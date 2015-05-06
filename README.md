@@ -70,6 +70,14 @@ APParallaxViewDelegate will notify the delegate about resizing of the parallax v
 
 ## Changelog
 
+**0.1.8**
+
+* Added image view tap recognizer
+
+**0.1.7**
+
+* Flexible width
+
 **0.1.6**
 
 * Re-added/fixed optional shadow implementation
