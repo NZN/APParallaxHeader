@@ -186,10 +186,11 @@ static char UIScrollViewParallaxView;
         [self setBackgroundColor:[UIColor redColor]];
         
         // default styling values
-        [self setAutoresizingMask:UIViewAutoresizingFlexibleHeight];
+        [self setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
         [self setState:APParallaxTrackingActive];
         
-        self.imageView = [[UIImageView alloc] init];
+        self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(frame), CGRectGetHeight(frame))];
+        [self.imageView setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
         [self.imageView setContentMode:UIViewContentModeScaleAspectFill];
         [self.imageView setClipsToBounds:YES];
         [self addSubview:self.imageView];
@@ -199,7 +200,8 @@ static char UIScrollViewParallaxView;
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[imageView]|" options:0 metrics:nil views:@{@"imageView" : self.imageView}]];
         
         if (shadow) {
-            self.shadowView = [[APParallaxShadowView alloc] init];
+            self.shadowView = [[APParallaxShadowView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(frame)-8, CGRectGetWidth(frame), 8)];
+            [self.shadowView setAutoresizingMask:UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleWidth];
             [self addSubview:self.shadowView];
             [self.shadowView setTranslatesAutoresizingMaskIntoConstraints:NO];
             [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[shadowView(8.0)]|" options:NSLayoutFormatAlignAllBottom metrics:nil views:@{@"shadowView" : self.shadowView}]];
